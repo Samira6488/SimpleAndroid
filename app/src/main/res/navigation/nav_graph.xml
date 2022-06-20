@@ -9,16 +9,10 @@
         android:id="@+id/mainFragment"
         android:name="ir.matiran.cryptocurrency.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
-        <action
-            android:id="@+id/action_mainFragment_to_fragment_second"
-            app:destination="@id/fragment_second" />
-    </fragment>
+        tools:layout="@layout/fragment_main" />
     <fragment
         android:id="@+id/fragment_second"
         android:name="ir.matiran.cryptocurrency.fragment_second"
         android:label="fragment_second"
-        tools:layout="@layout/fragment_second" >
-        <action android:id="@+id/action_fragment_second_to_mainFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_second" />
 </navigation>

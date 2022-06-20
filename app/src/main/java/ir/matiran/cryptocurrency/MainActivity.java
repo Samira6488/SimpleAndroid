@@ -4,22 +4,26 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
+
 import ir.matiran.cryptocurrency.databinding.ActivityMainBinding;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    ActivityMainBinding mainBinding;
+    //private ActivityMainBinding mainBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //mainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         //setContentView(mainBinding.getRoot());
-        //mainBinding.
+        
+		//mainBinding.
 
         setContentView(R.layout.activity_main);
-
 
         Fragment fragment = MainFragment.newInstance();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

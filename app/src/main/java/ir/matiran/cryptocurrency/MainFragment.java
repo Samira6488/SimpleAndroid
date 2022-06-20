@@ -114,10 +114,9 @@ public class MainFragment extends Fragment implements CurrencyListAdapter.ItemCl
         Fragment fragment = fragment_second.newInstance(CurrencyList.toString(), moneyprofilelistinfo);
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
 
-
         transaction.replace(R.id.fragment_container, fragment, "fragment_second");
-        //transaction.hide(getActivity().getSupportFragmentManager().findFragmentByTag("main_fragment"));
-       // transaction.add(R.id.fragment_container, fragment,"second_fragment");
+        //transaction.hide(getActivity().getSupportFragmentManager().findFragmentByTag("mainFragment"));
+        //transaction.add(R.id.fragment_container, fragment,"fragment_second");
 
         transaction.addToBackStack(null);
         transaction.commit();
