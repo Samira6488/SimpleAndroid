@@ -59,10 +59,10 @@ public class fragment_second extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Fragment fragment = MainFragment.newInstance();
+                Fragment fragment = ListFragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
 
-                transaction.replace(R.id.fragment_container, fragment, "mainFragment");
+                transaction.replace(R.id.fragment_container, fragment, "listFragment");
 
                 //transaction.hide(getActivity().getSupportFragmentManager().findFragmentByTag("second_fragment"));
                 //transaction.add(R.id.fragment_container, fragment,"main_fragment");

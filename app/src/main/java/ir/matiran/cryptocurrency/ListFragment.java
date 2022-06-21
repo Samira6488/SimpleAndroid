@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.LinkedList;
 import cn.pedant.SweetAlert.SweetAlertDialog;
-import ir.matiran.cryptocurrency.databinding.FragmentMainBinding;
+import ir.matiran.cryptocurrency.databinding.FragmentListBinding;
 import ir.matiran.cryptocurrency.modle.ProfileListInfo;
 import ir.matiran.cryptocurrency.viewmodles.ApiInterface;
 import ir.matiran.cryptocurrency.viewmodles.CurrencyListAdapter;
@@ -20,21 +20,21 @@ import retrofit2.Call;
 import retrofit2.Callback;
 
 
-public class MainFragment extends Fragment implements CurrencyListAdapter.ItemClickListener{
+public class ListFragment extends Fragment implements CurrencyListAdapter.ItemClickListener{
 
-    FragmentMainBinding bindingfrag;
+    FragmentListBinding bindingfrag;
     private final LinkedList<String> CurrencyList = new LinkedList<>();
     private ProfileListInfo moneyprofilelistinfo;
     private SweetAlertDialog pDialog;
     private CurrencyListAdapter mAdapter;
 
 
-    public MainFragment() {
+    public ListFragment() {
         // Required empty public constructor
     }
 
-    public static MainFragment newInstance() {
-        MainFragment fragment = new MainFragment();
+    public static ListFragment newInstance() {
+        ListFragment fragment = new ListFragment();
         return fragment;
     }
 
@@ -47,7 +47,7 @@ public class MainFragment extends Fragment implements CurrencyListAdapter.ItemCl
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        bindingfrag = FragmentMainBinding.inflate(inflater,container,false);
+        bindingfrag = FragmentListBinding.inflate(inflater,container,false);
         bindingfrag.refreshBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,9 +114,9 @@ public class MainFragment extends Fragment implements CurrencyListAdapter.ItemCl
         Fragment fragment = fragment_second.newInstance(CurrencyList.toString(), moneyprofilelistinfo);
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
 
-        transaction.replace(R.id.fragment_container, fragment, "fragment_second");
-        //transaction.hide(getActivity().getSupportFragmentManager().findFragmentByTag("mainFragment"));
-        //transaction.add(R.id.fragment_container, fragment,"fragment_second");
+        transaction.replace(R.id.fragment_container, fragment, "detailFragment");
+        //transaction.hide(getActivity().getSupportFragmentManager().findFragmentByTag("listFragment"));
+        //transaction.add(R.id.fragment_container, fragment,"detailFragment");
 
         transaction.addToBackStack(null);
         transaction.commit();

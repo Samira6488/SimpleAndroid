@@ -4,11 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.NavigationUI;
-
-import ir.matiran.cryptocurrency.databinding.ActivityMainBinding;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -20,15 +15,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //mainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         //setContentView(mainBinding.getRoot());
-        
 		//mainBinding.
 
         setContentView(R.layout.activity_main);
 
-        Fragment fragment = MainFragment.newInstance();
+        Fragment fragment = ListFragment.newInstance();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, fragment, "mainFragment");
-        //transaction.replace(    , fragment, "mainFragment");
+        transaction.replace(R.id.fragment_container, fragment, "listFragment");
+        //transaction.replace(    , fragment, "listFragment");
         transaction.addToBackStack(null);
         transaction.commit();
 
