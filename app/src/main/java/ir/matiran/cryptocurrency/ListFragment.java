@@ -3,7 +3,8 @@ package ir.matiran.cryptocurrency;
 import android.graphics.Color;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,21 +13,22 @@ import android.view.ViewGroup;
 import java.util.LinkedList;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import ir.matiran.cryptocurrency.databinding.FragmentListBinding;
-import ir.matiran.cryptocurrency.modle.ProfileListInfo;
-import ir.matiran.cryptocurrency.viewmodles.ApiInterface;
-import ir.matiran.cryptocurrency.viewmodles.CurrencyListAdapter;
-import ir.matiran.cryptocurrency.viewmodles.RetrofitClientInstance;
+import ir.matiran.cryptocurrency.model.ProfileListInfo;
+import ir.matiran.cryptocurrency.viewmodel.ApiInterface;
+import ir.matiran.cryptocurrency.viewmodel.CurrencyListAdapter;
+import ir.matiran.cryptocurrency.viewmodel.RetrofitClientInstance;
 import retrofit2.Call;
 import retrofit2.Callback;
 
 
 public class ListFragment extends Fragment implements CurrencyListAdapter.ItemClickListener{
 
-    FragmentListBinding bindingfrag;
+    FragmentListBinding binding;
     private final LinkedList<String> CurrencyList = new LinkedList<>();
     private ProfileListInfo moneyprofilelistinfo;
     private SweetAlertDialog pDialog;
     private CurrencyListAdapter mAdapter;
+    NavController navController = null;
 
 
     public ListFragment() {
@@ -47,27 +49,33 @@ public class ListFragment extends Fragment implements CurrencyListAdapter.ItemCl
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        bindingfrag = FragmentListBinding.inflate(inflater,container,false);
-        bindingfrag.refreshBtn.setOnClickListener(new View.OnClickListener() {
+        binding = FragmentListBinding.inflate(inflater,container,false);
+        binding.refreshBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startTask();
             }
         });
 
-        mAdapter = new CurrencyListAdapter((MainActivity)getContext(), CurrencyList, this);
-        bindingfrag.currencyrecviewRv.setAdapter(mAdapter);
-        bindingfrag.currencyrecviewRv.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mAdapter = new CurrencyListAdapter((MainActivity)requireContext(), CurrencyList, this);
+        binding.currencyrecviewRv.setAdapter(mAdapter);
+        binding.currencyrecviewRv.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         startTask();
 
-        return bindingfrag.getRoot();
+        return binding.getRoot();
     }
 
+    @Override
+    public void onViewCreated(View v, Bundle savedInstanceState) {
+        super.onViewCreated(v, savedInstanceState);
+
+        navController = Navigation.findNavController(v);
+    }
 
     public void startTask() {
         // Loading Dialog
-        pDialog = new SweetAlertDialog((MainActivity)getContext(), SweetAlertDialog.PROGRESS_TYPE);
+        pDialog = new SweetAlertDialog(requireContext(), SweetAlertDialog.PROGRESS_TYPE);
         pDialog.getProgressHelper().setBarColor(Color.parseColor("#dc86a5"));
         pDialog.setTitleText("Loading");
         pDialog.setCancelable(false);
@@ -94,7 +102,6 @@ public class ListFragment extends Fragment implements CurrencyListAdapter.ItemCl
                 // for updating recycleview
                 mAdapter.notifyDataSetChanged();
                 Log.wtf("again", "ok again call " );
-
             }
 
             @Override
@@ -103,25 +110,16 @@ public class ListFragment extends Fragment implements CurrencyListAdapter.ItemCl
                 pDialog.cancel();
 
             }
-
         });
     }
-
 
     @Override
     public void onItemClick(String CurrencyList) {
 
-        Fragment fragment = fragment_second.newInstance(CurrencyList.toString(), moneyprofilelistinfo);
-        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        Bundle bundle = new Bundle();
+        bundle.putString("CurrencyName", CurrencyList.toString());
+        bundle.putSerializable("CurrencyInfo", moneyprofilelistinfo);
 
-        transaction.replace(R.id.fragment_container, fragment, "detailFragment");
-        //transaction.hide(getActivity().getSupportFragmentManager().findFragmentByTag("listFragment"));
-        //transaction.add(R.id.fragment_container, fragment,"detailFragment");
-
-        transaction.addToBackStack(null);
-        transaction.commit();
-
-
-
+        navController.navigate(R.id.action_mainFragment_to_fragment_second, bundle);
     }
 }

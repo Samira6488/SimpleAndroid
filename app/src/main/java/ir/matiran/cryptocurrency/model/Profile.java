@@ -1,4 +1,4 @@
-package ir.matiran.cryptocurrency.modle;
+package ir.matiran.cryptocurrency.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

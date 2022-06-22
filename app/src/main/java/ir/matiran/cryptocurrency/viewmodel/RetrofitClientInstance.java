@@ -1,4 +1,4 @@
-package ir.matiran.cryptocurrency.viewmodles;
+package ir.matiran.cryptocurrency.viewmodel;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
