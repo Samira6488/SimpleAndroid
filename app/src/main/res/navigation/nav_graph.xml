@@ -3,22 +3,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/listFragment">
 
     <fragment
-        android:id="@+id/mainFragment"
+        android:id="@+id/listFragment"
         android:name="ir.matiran.cryptocurrency.ListFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_list" >
         <action
             android:id="@+id/action_mainFragment_to_fragment_second"
-            app:destination="@id/fragment_second" />
+            app:destination="@id/detailFragment" />
+        <argument
+            android:name="CurrencyName"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="None" />
+        <argument
+            android:name="CurrencyInfo"
+            app:argType="ir.matiran.cryptocurrency.model.ProfileListInfo" />
+
     </fragment>
+
     <fragment
-        android:id="@+id/fragment_second"
-        android:name="ir.matiran.cryptocurrency.fragment_second"
+        android:id="@+id/detailFragment"
+        android:name="ir.matiran.cryptocurrency.DetailFragment"
         android:label="fragment_second"
-        tools:layout="@layout/fragment_second" >
-        <action android:id="@+id/action_fragment_second_to_mainFragment" />
+        tools:layout="@layout/fragment_detail" >
+        <action
+            android:id="@+id/action_fragment_second_to_mainFragment"
+            app:destination="@id/listFragment" />
+
     </fragment>
 </navigation>

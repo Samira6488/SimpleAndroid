@@ -1,4 +1,4 @@
-package ir.matiran.cryptocurrency.viewmodles;
+package ir.matiran.cryptocurrency.viewmodel;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,13 +8,12 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import ir.matiran.cryptocurrency.databinding.RecyclerviewRowBinding;
-import ir.matiran.cryptocurrency.modle.Profile;
+import ir.matiran.cryptocurrency.model.Profile;
 
 
 public class TransactionListAdapter extends RecyclerView.Adapter<TransactionListAdapter.TransactionViewHolder> {
 
     private final ArrayList<Profile> DetailList;
-    //hint
     private final LayoutInflater detInflater;
 
     public TransactionListAdapter(Context context,
@@ -26,9 +25,9 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
     @Override
     public TransactionViewHolder onCreateViewHolder(ViewGroup parent,
                                                              int viewType) {
-        RecyclerviewRowBinding recyclerviewrowBinding = RecyclerviewRowBinding.inflate(detInflater,
+        RecyclerviewRowBinding binding = RecyclerviewRowBinding.inflate(detInflater,
                 parent, false);
-        return new TransactionViewHolder(recyclerviewrowBinding, this);
+        return new TransactionViewHolder(binding, this);
     }
 
 
@@ -48,12 +47,12 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
 
     public class TransactionViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener  {
 
-        RecyclerviewRowBinding recyclerviewrowBinding;
+        RecyclerviewRowBinding recBinding;
        final TransactionListAdapter mAdapter;
 
         public TransactionViewHolder(RecyclerviewRowBinding recyclerviewrowBinding, TransactionListAdapter adapter) {
             super(recyclerviewrowBinding.getRoot());
-            this.recyclerviewrowBinding = recyclerviewrowBinding;
+            this.recBinding = recyclerviewrowBinding;
             this.mAdapter = adapter;
             recyclerviewrowBinding.selectedcurrencyTv.setOnClickListener(this);
         }
@@ -79,7 +78,7 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
         }
 
         public void bindView(Profile DetailList){
-            recyclerviewrowBinding.selectedcurrencyTv.setText("  Size=" + DetailList.size + "  Price=" + DetailList.price + "  Side=" + DetailList.side + "  Timestamp=" + DetailList.timestamp);
+            recBinding.selectedcurrencyTv.setText("  Size=" + DetailList.size + "  Price=" + DetailList.price + "  Side=" + DetailList.side + "  Timestamp=" + DetailList.timestamp);
         }
 
     }

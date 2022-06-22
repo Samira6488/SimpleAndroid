@@ -1,6 +1,6 @@
-package ir.matiran.cryptocurrency.viewmodles;
+package ir.matiran.cryptocurrency.viewmodel;
 
-import ir.matiran.cryptocurrency.modle.ProfileListInfo;
+import ir.matiran.cryptocurrency.model.ProfileListInfo;
 import retrofit2.Call;
 import retrofit2.http.GET;
 
