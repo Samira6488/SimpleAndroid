@@ -18,9 +18,6 @@
             app:argType="string"
             app:nullable="true"
             android:defaultValue="None" />
-        <argument
-            android:name="CurrencyInfo"
-            app:argType="ir.matiran.cryptocurrency.model.ProfileListInfo" />
 
     </fragment>
 
