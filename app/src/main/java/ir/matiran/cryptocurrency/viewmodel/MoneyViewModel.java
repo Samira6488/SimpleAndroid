@@ -46,18 +46,9 @@ public class MoneyViewModel extends ViewModel {
     public LiveData<ProfileListInfo> getTransactions() { return transactions; }
     public LiveData<ArrayList<Profile>> getProfiles() { return currencyprofiles; }
 
-
-    private void loadUsers() {
-        LinkedList<String> coinList = new LinkedList<>();
-        currency.setValue(coinList);
-    }
-
     public void loadMoney() {
         LinkedList<String> moneyList = currency.getValue();
-        if(moneyList== null) {
-            loadUsers();
-            moneyList = currency.getValue();
-        }
+
         // Put initial data into the word list.
         for (int i = 0; i < 33; i++) {
             moneyList.addLast((moneyprofilelistinfo.GetCoins(i)).toString());
