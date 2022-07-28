@@ -1,3 +1,5 @@
+# SimpleAndroid_Java
+
 In this android project, we show how to use RecyclerView, Fragment,  Retrofit, MVVM, loading dialog, sharing information, view binding, setting the theme, and Navigation(NavHostFragment and nav_graph). 
 
 For more samples and learning, please see the below links:
