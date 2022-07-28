@@ -10,4 +10,6 @@ Learning Thread link: https://github.com/Mehrdad32/NewThread_Android
 
 Learning Navigation Link:
  https://learntodroid.com/how-to-move-between-fragments-using-the-navigation-component/
+ 
+ 
 https://developer.android.com/guide/navigation/navigation-pass-data#groovy
